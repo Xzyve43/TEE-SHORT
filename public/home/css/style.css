@@ -171,6 +171,10 @@ a:focus {
   margin-bottom: 2px;
 }
 
+.navbar-nav .nav-item .nav-link.active {
+  color: #007BFF; /* Change this to your desired text color */
+}
+
 .custom_nav-container .navbar-nav .nav-item:hover .nav-link, .custom_nav-container .navbar-nav .nav-item.active .nav-link {
   color: #007BFF;
 }

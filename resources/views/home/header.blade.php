@@ -7,14 +7,14 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <ul class="navbar-nav">
-                        <li class="nav-item active">
-                           <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                           <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="{{url('products')}}">Products</a>
+                           <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="{{url('products')}}">Products</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="{{url('contact')}}">Contact</a>
+                           <a class="nav-link {{ Request::is('contact') ? 'active' : '' }}" href="{{url('contact')}}">Contact</a>
                         </li>
 
                         @if (Route::has('login'))
@@ -22,13 +22,13 @@
                         @auth
 
                         <li class="nav-item">
-                           <a class="nav-link" href="{{url('show_cart')}}">Cart<span style="color: green;">{{App\Models\cart::where('user_id','=',Auth::user()->id)->count()}}</span></a>
+                           <a class="nav-link {{ Request::is('show_cart') ? 'active' : '' }}" href="{{url('show_cart')}}">Cart<span style="color: green;">{{App\Models\cart::where('user_id','=',Auth::user()->id)->count()}}</span></a>
                         </li>
 
                         @else
 
                          <li class="nav-item">
-                           <a class="nav-link" href="{{url('show_cart')}}">Cart</a>
+                           <a class="nav-link {{ Request::is('show_cart') ? 'active' : '' }}" href="{{url('show_cart')}}">Cart</a>
                         </li>
 
                        
@@ -41,13 +41,13 @@
                         @auth
 
                         <li class="nav-item">
-                           <a class="nav-link" href="{{url('show_order')}}">Order<span style="color: green;">{{App\Models\order::where('user_id','=',Auth::user()->id)->count()}}</span></a>
+                           <a class="nav-link {{ Request::is('show_order') ? 'active' : '' }}" href="{{url('show_order')}}">Order<span style="color: green;">{{App\Models\order::where('user_id','=',Auth::user()->id)->count()}}</span></a>
                         </li>
 
                         @else
 
                          <li class="nav-item">
-                           <a class="nav-link" href="{{url('show_order')}}">Order</a>
+                           <a class="nav-link {{ Request::is('show_order') ? 'active' : '' }}" href="{{url('show_order')}}">Order</a>
                         </li>
         
                         @endauth
