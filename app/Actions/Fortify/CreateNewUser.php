@@ -25,7 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'city' => ['required', 'string', 'max:255'],
             'district' => ['required', 'string', 'max:255'],
-            'street' => ['required', 'string', 'max:255'], // Add validation for street
+            'street' => ['required', 'string', 'max:255'], 
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();   
         
