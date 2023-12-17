@@ -14,13 +14,23 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="phone" value="{{ __('phone') }}" />
-                <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required autocomplete="username" />
+                <x-label for="phone" value="{{ __('Phone (PH)') }}" />
+                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autocomplete="username" pattern="^(09|\+639)\d{9}$" />
             </div>
             
             <div class="mt-4">
-                <x-label for="address" value="{{ __('address') }}" />
-                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="username" />
+                <x-label for="city" value="{{ __('City') }}" />
+                <x-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required autocomplete="city" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="district" value="{{ __('District') }}" />
+                <x-input id="district" class="block mt-1 w-full" type="text" name="district" :value="old('district')" required autocomplete="district" />
+            </div>
+
+            <div class="mt-4">
+                <label for="street" class="block font-medium text-sm text-gray-700">Street</label>
+                <input id="street" name="street" type="text" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required autocomplete="street">
             </div>
 
             <div class="mt-4">
