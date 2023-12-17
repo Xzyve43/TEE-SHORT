@@ -22,13 +22,13 @@
                         @auth
 
                         <li class="nav-item">
-                           <a class="nav-link {{ Request::is('show_cart') ? 'active' : '' }}" href="{{url('show_cart')}}">Cart<span style="color: green;">{{App\Models\cart::where('user_id','=',Auth::user()->id)->count()}}</span></a>
+                           <a class="nav-link {{ Request::is('show_cart') ? 'active' : '' }}" href="{{url('show_cart')}}">Cart <span style="color: green;">{{App\Models\cart::where('user_id','=',Auth::user()->id)->count()}}</span></a>
                         </li>
 
                         @else
 
                          <li class="nav-item">
-                           <a class="nav-link {{ Request::is('show_cart') ? 'active' : '' }}" href="{{url('show_cart')}}">Cart</a>
+                           <a class="nav-link {{ Request::is('show_cart') ? 'active' : '' }}" href="{{url('show_cart')}}">Cart </a>
                         </li>
 
                        
@@ -41,13 +41,13 @@
                         @auth
 
                         <li class="nav-item">
-                           <a class="nav-link {{ Request::is('show_order') ? 'active' : '' }}" href="{{url('show_order')}}">Order<span style="color: green;">{{App\Models\order::where('user_id','=',Auth::user()->id)->count()}}</span></a>
+                           <a class="nav-link {{ Request::is('show_order') ? 'active' : '' }}" href="{{url('show_order')}}">Order <span style="color: green;">{{App\Models\order::where('user_id','=',Auth::user()->id)->count()}}</span></a>
                         </li>
 
                         @else
 
                          <li class="nav-item">
-                           <a class="nav-link {{ Request::is('show_order') ? 'active' : '' }}" href="{{url('show_order')}}">Order</a>
+                           <a class="nav-link {{ Request::is('show_order') ? 'active' : '' }}" href="{{url('show_order')}}">Order </a>
                         </li>
         
                         @endauth

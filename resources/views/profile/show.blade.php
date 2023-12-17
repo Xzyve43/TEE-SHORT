@@ -13,6 +13,17 @@
                 <x-section-border />
             @endif
 
+            @if (auth()->check() && auth()->user()->can('update-address'))
+            <div class="mt-10 sm:mt-0">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        @livewire('address-update')
+                    </div>
+                </div>
+                <x-section-border />
+            </div>
+            @endif
+
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\http\Controllers\GoogleController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::middleware([
     })->name('dashboard');
 
 });
+
+Route::get('/address', [AddressController::class, 'showAddressForm'])->name('address.show');
+
+Route::post('/address/update', [AddressController::class, 'updateAddress'])->name('address.update');
 
 route::get('auth/google',[GoogleController::class,'googlepage']);
 

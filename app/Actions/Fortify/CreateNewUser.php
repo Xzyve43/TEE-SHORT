@@ -20,7 +20,8 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'firstname' => ['required', 'string', 'min:3', 'max:255'],
+            'surname' => ['required', 'string', 'min:2', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required','string', 'unique:users'],
             'password' => $this->passwordRules(),
@@ -29,14 +30,17 @@ class CreateNewUser implements CreatesNewUsers
             'street' => ['required', 'string', 'min:3', 'max:255'], 
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ], [
-            'name.min' => 'invalid name',
+            'firstname.min' => 'invalid firstname',
+            'surname.min' => 'invalid surname',
             'city.min' => 'invalid city',
             'district.min' => 'invalid district',
             'street.min' => 'invalid street',
             ])->validate();           
         
         return User::create([
-            'name' => $input['name'],
+            'name' => $input['firstname'] . ' ' . $input['surname'],
+            'firstname' => $input['firstname'], 
+            'surname' => $input['surname'],    
             'email' => $input['email'],
             'phone' => $input['phone'],
             'city' => $input['city'],
