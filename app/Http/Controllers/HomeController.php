@@ -87,25 +87,51 @@ class HomeController extends Controller
             $user = Auth::user();
             $userid = $user->id;
             $product = Product::find($id);
-            
+    
+            $availableQuantity = $product->quantity; // Get the available quantity
+    
+            // Validate requested quantity against available quantity
+            $requestedQuantity = $request->input('quantity');
+    
+            // Calculate total quantity of this product in all carts
+            $totalQuantityInCarts = Cart::where('Product_id', $id)
+                ->sum('quantity');
+    
+            if ($requestedQuantity + $totalQuantityInCarts > $availableQuantity) {
+                Alert::error('Error', 'Requested quantity exceeds available quantity')->autoClose(4000);
+                return redirect()->back();
+            }
+    
             $existingCartItem = Cart::where('Product_id', $id)
                 ->where('user_id', $userid)
                 ->first();
     
             if ($existingCartItem) {
-
+                // Calculate the total requested quantity
+                $totalRequestedQuantity = $existingCartItem->quantity + $requestedQuantity;
+    
+                if ($totalRequestedQuantity > $availableQuantity) {
+                    Alert::error('Error', 'Requested quantity exceeds available quantity')->autoClose(4000);
+                    return redirect()->back();
+                }
+    
+                // Update the existing cart item
                 $existingCartItem->quantity += $request->quantity;
                 $existingCartItem->price = $product->discount_price !== null ?
                     $product->discount_price * $existingCartItem->quantity :
                     $product->price * $existingCartItem->quantity;
                 $existingCartItem->save();
-
-                Alert::success('Product Added Successfully','We have added product to the cart');
-                
+    
+                Alert::success('Product Added Successfully', 'We have added the product to the cart');
+    
                 return redirect()->back();
-
             } else {
-
+                // Add the item to cart if it doesn't exist
+                if ($requestedQuantity > $availableQuantity) {
+                    Alert::error('Error', 'Requested quantity exceeds available quantity')->autoClose(4000);
+                    return redirect()->back();
+                }
+    
                 $cart = new Cart;
                 $cart->name = $user->name;
                 $cart->email = $user->email;
@@ -123,17 +149,16 @@ class HomeController extends Controller
                 $cart->image = $user->image;
                 $cart->Product_id = $product->id;
                 $cart->quantity = $request->quantity;
-                $cart->save();        
-
-                Alert::success('Product Added Successfully','We have added product to the cart');
+                $cart->save();
+    
+                Alert::success('Product Added Successfully', 'We have added the product to the cart');
                 return redirect()->back();
             }
-            Alert::success('Product Added Successfully','We have added product to the cart');
-            return redirect()->back();
         } else {
             return redirect('login');
         }
     }
+
     
 
     public function show_cart()
