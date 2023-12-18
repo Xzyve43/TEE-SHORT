@@ -91,9 +91,8 @@
                     <th style="padding: 10px;">Product title</th>
                     <th style="padding: 10px;">Quantity</th>
                     <th style="padding: 10px;">Price</th>
-                    <th style="padding: 10px;">Payment Statuse</th>
-                    <th style="padding: 10px;">Delivery Statuse</th>
-                    <th style="padding: 10px;">Image</th>
+                    <th style="padding: 10px;">Payment Status</th>
+                    <th style="padding: 10px;">Delivery Status</th>
                     <th style="padding: 10px;">Delivered</th>
                     <th style="padding: 10px;">Print PDF</th>
                     <th style="padding: 10px;"> Send Email</th>
@@ -111,12 +110,6 @@
                         <td>{{$order->price}}</td>
                         <td>{{$order->payment_status}}</td>
                         <td>{{$order->delivery_status}}</td>
-                        <td>
-
-                        <img class="image_size" src="/product/{{$order->image}}">
-
-
-                        </td>
 
                         <td>
 
