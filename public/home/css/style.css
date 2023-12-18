@@ -135,6 +135,10 @@ a:focus {
   padding-left: 25px;
 }
 
+.contact-section {
+  text-align: center; /* Center-align content */
+  margin-top: 20px; /* Adjust this value as needed for space between header and contact section */
+}
 .navbar-brand {
   font-family: 'Playfair Display', serif;
 }

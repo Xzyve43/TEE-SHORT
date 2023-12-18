@@ -29,12 +29,19 @@
          <!-- header section strats -->
          @include('home.header')
          <!-- end header section -->
-
+         <div class="contact-container">
+        <div class="contact-section">
+        <h2>Contact Us</h2>
+         <div class="contact-info">
+            <p>Email: example@email.com</p>
+            <p>Phone: +1234567890</p>
+            <p>Address: 123 Street, City, Country</p>
+         </div>
+        </div>
+      </div>
       </div>
 
-      <!-- subscribe section -->
-      @include('home.subscribe')
-      <!-- end subscribe section -->
+
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
          
