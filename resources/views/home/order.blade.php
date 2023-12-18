@@ -68,6 +68,7 @@
                             <th class="th_deg">Product_title</th>
                             <th class="th_deg">Quantity</th>
                             <th class="th_deg">Price</th>
+                            <th class="th_deg">Order Date</th>
                             <th class="th_deg">Payment Status</th>
                             <th class="th_deg">Delivery Status</th>
                             <th class="th_deg">Cancel Order</th>
@@ -82,6 +83,7 @@
                                 <td>{{$order->product_title}}</td>
                                 <td>{{$order->quantity}}</td>
                                 <td>{{$order->price}}</td>
+                                <td>{{ $order->created_at->format('Y-m-d H:i:s') }}</td>
                                 <td>{{$order->payment_status}}</td>
                                 <td>{{$order->delivery_status}}</td>
                                 <td>

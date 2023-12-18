@@ -93,15 +93,6 @@ class HomeController extends Controller
             // Validate requested quantity against available quantity
             $requestedQuantity = $request->input('quantity');
     
-            // Calculate total quantity of this product in all carts
-            $totalQuantityInCarts = Cart::where('Product_id', $id)
-                ->sum('quantity');
-    
-            if ($requestedQuantity + $totalQuantityInCarts > $availableQuantity) {
-                Alert::error('Error', 'Requested quantity exceeds available quantity')->autoClose(4000);
-                return redirect()->back();
-            }
-    
             $existingCartItem = Cart::where('Product_id', $id)
                 ->where('user_id', $userid)
                 ->first();
@@ -126,7 +117,7 @@ class HomeController extends Controller
     
                 return redirect()->back();
             } else {
-                // Add the item to cart if it doesn't exist
+                // Calculate the total requested quantity for a new item
                 if ($requestedQuantity > $availableQuantity) {
                     Alert::error('Error', 'Requested quantity exceeds available quantity')->autoClose(4000);
                     return redirect()->back();
@@ -158,6 +149,7 @@ class HomeController extends Controller
             return redirect('login');
         }
     }
+    
 
     
 
@@ -190,72 +182,47 @@ class HomeController extends Controller
 
     public function cash_order()
     {
-
-        $user=Auth::user();
-
-
-
-        $userid=$user->id;
-
-
-
-        $data=cart::where('user_id','=',$userid)->get();
-
-
-
-
-
-        foreach($data as $data)
+        $user = Auth::user();
+        $userid = $user->id;
+        $cartItems = cart::where('user_id', '=', $userid)->get();
+    
+        foreach ($cartItems as $item)
         {
-            $order=new order;
-
-
-            $order->name=$data->name;
-
-            $order->email=$data->email;
-
-            $order->phone=$data->phone;
-
-            $order->address=$data->address;
-
-            $order->user_id=$data->user_id;
-
-
-            $order->product_title=$data->product_title;
-
-            $order->price=$data->price;
-
-            $order->quantity=$data->quantity;
-
-            $order->image=$data->image;
-
-            $order->product_id=$data->product_id;
-
-            $order->payment_status='cash on delivery';
-
-            $order->delivery_status='processing';
-
-
-
+            $order = new order;
+    
+            $order->name = $item->name;
+            $order->email = $item->email;
+            $order->phone = $item->phone;
+            $order->address = $item->address;
+            $order->user_id = $item->user_id;
+    
+            $order->product_title = $item->product_title;
+            $order->price = $item->price;
+            $order->quantity = $item->quantity;
+            $order->image = $item->image;
+            $order->product_id = $item->product_id;
+    
+            $order->payment_status = 'cash on delivery';
+            $order->delivery_status = 'processing';
+    
             $order->save();
-
-            $cart_id=$data->id;
-
-            $cart=cart::find($cart_id);
-
+    
+            // Update product quantity
+            $product = Product::find($item->product_id);
+            if ($product) {
+                $product->quantity -= $item->quantity;
+                $product->save();
+            }
+    
+            // Delete the cart entry
+            $cart_id = $item->id;
+            $cart = cart::find($cart_id);
             $cart->delete();
-
-
-
-
         }
-
-
+    
         return redirect()->back()->with('message', 'We have Received your Order. We will connect with you soon...');
-
-
-
     }
+    
 
     public function stripe($totalprice)
     {
@@ -381,15 +348,35 @@ class HomeController extends Controller
 
     public function cancel_order($id)
     {
-
-        $order=order::find($id);
-
-        $order->delivery_status='You canceled the order';
-
+        $order = Order::find($id);
+    
+        if (!$order) {
+            // Handle order not found
+            return redirect()->back()->with('error', 'Order not found');
+        }
+    
+        // Store the quantity of items being canceled
+        $cancelledQuantity = $order->quantity;
+    
+        // Update the order status to 'Canceled'
+        $order->delivery_status = 'Cancelled';
         $order->save();
-
-        return redirect()->back();
+    
+        // Restore the product quantity
+        $product = Product::find($order->product_id);
+    
+        if ($product) {
+            // Increase the product quantity by the cancelled quantity
+            $product->quantity += $cancelledQuantity;
+            $product->save();
+        } else {
+            // Handle product not found
+            return redirect()->back()->with('error', 'Product not found');
+        }
+    
+        return redirect()->back()->with('success', 'Order canceled successfully. Item quantity restored.');
     }
+    
 
     public function product(){
 
