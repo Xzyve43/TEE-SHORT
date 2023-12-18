@@ -11,7 +11,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <link rel="shortcut icon" href="images/favicon.png" type="">
-      <title>Famms - Fashion HTML Template</title>
+      <title>Tee - Short</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="{{asset('home/css/bootstrap.css')}}" />
       <!-- font awesome style -->
@@ -70,7 +70,6 @@
                             <th class="th_deg">Price</th>
                             <th class="th_deg">Payment Status</th>
                             <th class="th_deg">Delivery Status</th>
-                            <th class="th_deg">Image</th>
                             <th class="th_deg">Cancel Order</th>
 
 
@@ -85,10 +84,6 @@
                                 <td>{{$order->price}}</td>
                                 <td>{{$order->payment_status}}</td>
                                 <td>{{$order->delivery_status}}</td>
-                                <td>
-
-                                <img height="100" width="180" src="product/{{$order->image}}">
-                                </td>
                                 <td>
                                     @if($order->delivery_status=='processing')
                                     <a onclick="return confirm('Are you sure to cancel this Order?')" class="btn btn-danger" href="{{url('cancel_order',$order->id)}}">Cancel Order</a>

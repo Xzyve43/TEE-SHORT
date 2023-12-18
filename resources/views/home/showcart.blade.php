@@ -11,7 +11,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <link rel="shortcut icon" href="images/favicon.png" type="">
-      <title>Famms - Fashion HTML Template</title>
+      <title>Tee - Short</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="{{asset('home/css/bootstrap.css')}}" />
       <!-- font awesome style -->
@@ -93,7 +93,6 @@
             <th class="th_deg">Product title</th>
             <th class="th_deg">Product quantity</th>
             <th class="th_deg">Price</th>
-            <th class="th_deg">Image</th>
             <th class="th_deg">Action</th>
 
         </tr>
@@ -107,7 +106,6 @@
         <td>{{$cart->product_title}}</td>
         <td>{{$cart->quantity}}</td>
         <td>₱{{$cart->price}}</td>
-        <td><img class="img_deg" src="/product/{{$cart->image}}"></td>
         <td>
             <a class="btn btn-danger" onclick="confirmation(event)" href="{{url('/remove_cart',$cart->id)}}">Remove Product</a></td>
 
@@ -159,7 +157,7 @@
         var urlToRedirect = ev.currentTarget.getAttribute('href');  
         console.log(urlToRedirect); 
         swal({
-            title: "Are you sure to cancel this product",
+            title: "Are you sure to remove this product",
             text: "You will not be able to revert this!",
             icon: "warning",
             buttons: true,

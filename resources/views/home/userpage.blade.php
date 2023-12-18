@@ -11,7 +11,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <link rel="shortcut icon" href="images/favicon.png" type="">
-      <title>Famms - Fashion HTML Template</title>
+      <title>Tee - Short</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="{{asset('home/css/bootstrap.css')}}" />
       <!-- font awesome style -->
@@ -36,18 +36,12 @@
       <!-- why section -->
       @include('home.why')
       <!-- end why section -->
-      
-      <!-- arrival section -->
-      @include('home.new_arival')
-      <!-- end arrival section -->
+   
       
       <!-- product section -->
       @include('home.product')
       <!-- end product section -->
 
-      <!-- subscribe section -->
-      @include('home.subscribe')
-      <!-- end subscribe section -->
 
       <!-- footer start -->
       @include('home.footer')
