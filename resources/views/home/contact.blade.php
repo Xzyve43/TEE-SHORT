@@ -33,9 +33,9 @@
         <div class="contact-section">
         <h2>Contact Us</h2>
          <div class="contact-info">
-            <p>Email: example@email.com</p>
-            <p>Phone: +1234567890</p>
-            <p>Address: 123 Street, City, Country</p>
+            <p>Email: email@gmail.com</p>
+            <p>Phone: 0910 885 9661</p>
+            <p>Gat Tayaw Street, Liliw, Philippines</p>
          </div>
         </div>
       </div>
