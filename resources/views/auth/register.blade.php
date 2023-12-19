@@ -17,32 +17,32 @@
             <!-- Last Name / Surname -->
             <div class="mt-4">
                 <x-label for="surname" value="{{ __('Last Name') }}" />
-                <x-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autocomplete="family-name" />
+                <x-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required/>
             </div>
 
             <div class="mt-4">
                 <x-label for="phone" value="{{ __('Phone (PH)') }}" />
-                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autocomplete="username" pattern="^(09|\+639)\d{9}$" />
+                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required  pattern="^(09|\+639)\d{9}$" />
             </div>
             
             <div class="mt-4">
                 <x-label for="city" value="{{ __('City') }}" />
-                <x-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required autocomplete="city" />
+                <x-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required />
             </div>
 
             <div class="mt-4">
                 <x-label for="district" value="{{ __('District') }}" />
-                <x-input id="district" class="block mt-1 w-full" type="text" name="district" :value="old('district')" required autocomplete="district" />
+                <x-input id="district" class="block mt-1 w-full" type="text" name="district" :value="old('district')" required />
             </div>
 
             <div class="mt-4">
-                <label for="street" class="block font-medium text-sm text-gray-700">Street</label>
-                <input id="street" name="street" type="text" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required autocomplete="street">
+                <x-label for="street" value="{{ __('Street') }}" />
+                <x-input id="street" class="block mt-1 w-full" type="text" name="street" :value="old('street')" required />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <div class="mt-4">

@@ -80,7 +80,7 @@
                         @foreach($order as $order)
                         <tr>
 
-                                <td>{{$order->product_title}}</td>
+                                <td><a href="{{ url('product_details', $order->product_id) }}">{{$order->product_title}}</a></td>
                                 <td>{{$order->quantity}}</td>
                                 <td>{{$order->price}}</td>
                                 <td>{{ $order->created_at->format('Y-m-d H:i:s') }}</td>
