@@ -14,9 +14,6 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
                       </div>
                     </div>
                     <h6 class="text-muted font-weight-normal">Total Products</h6>
@@ -34,9 +31,6 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
                       </div>
                     </div>
                     <h6 class="text-muted font-weight-normal">Total Orders</h6>
@@ -54,9 +48,6 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
                       </div>
                     </div>
                     <h6 class="text-muted font-weight-normal">Total Customers</h6>
@@ -74,9 +65,6 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
                       </div>
                     </div>
                     <h6 class="text-muted font-weight-normal">Total Revenue</h6>
@@ -95,9 +83,6 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
                       </div>
                     </div>
                     <h6 class="text-muted font-weight-normal">Order Delivered</h6>
@@ -118,9 +103,6 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
                       </div>
                     </div>
                     <h6 class="text-muted font-weight-normal">Order Processing</h6>

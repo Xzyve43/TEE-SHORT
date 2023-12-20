@@ -36,34 +36,23 @@ class HomeController extends Controller
     {
         $usertype=Auth::user()->usertype;
 
-        if($usertype=='1')
-        {
-
-            $total_product=product::all()->count();
-
-            $total_order=order::all()->count();
-
-            $total_user=user::all()->count();
-
-            $order=order::all();
-
-            $total_revenue=0;
-
-            foreach($order as $order)
-
-            {
-
-                $total_revenue=$total_revenue + $order->price;
-
+        if ($usertype == '1') {
+            $total_product = Product::count();
+            $total_order = Order::count();
+            $total_user = User::where('usertype', '=', '0')->count();
+            $delivered_orders = Order::where('delivery_status', '=', 'delivered')->get();
+            
+            $total_revenue = 0;
+        
+            foreach ($delivered_orders as $order) {
+                $total_revenue += $order->price;
             }
-
-            $total_delivered=order::where('delivery_status','=','delivered')->get()->count();
-
-            $total_processing=order::where('delivery_status','=','processing')->get()->count();
-
-
-            return view('admin.home',compact('total_product','total_order','total_user','total_revenue','total_delivered','total_processing'));
-        }
+        
+            $total_delivered = $delivered_orders->count();
+            $total_processing = Order::where('delivery_status', '=', 'processing')->count();
+        
+            return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_processing'));
+        }        
 
         else
             {

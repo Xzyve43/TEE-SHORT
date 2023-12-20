@@ -44,7 +44,7 @@
         {
             font-size: 22px;
             padding: 5px;
-            background: #f7444e
+            background-color: #007BFF;
         }
 
         .img_deg
@@ -57,6 +57,10 @@
         {
             font-size: 20px;
             padding: 40px;
+        }
+
+        table {
+            margin: auto;
         }
       </style>
    </head>
@@ -131,9 +135,9 @@
 
             <h1 style="font-size: 25px; padding-bottom: 15px;">Proceed to Order</h1>
 
-            <a href="{{url('cash_order')}}" class="btn btn-danger">Cash On Delivery</a>
+            <a href="{{url('cash_order')}}" class="btn btn-dark">Cash On Delivery</a>
 
-            <a href="{{url('stripe',$totalprice)}}" class="btn btn-danger">Pay Using Card</a>
+            <a href="{{url('stripe',$totalprice)}}" class="btn btn-primary">Pay Using Card</a>
 
       </div>
 

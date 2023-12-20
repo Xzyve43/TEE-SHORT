@@ -69,6 +69,12 @@ route::post('/send_user_email/{id}',[AdminController::class,'send_user_email']);
 
 route::get('/search',[AdminController::class,'searchdata']);
 
+Route::get('packed/{id}', [AdminController::class, 'markAsPacked'])->name('packed');
+
+Route::get('shipped/{id}', [AdminController::class, 'markAsShipped'])->name('shipped');
+
+Route::get('delivered/{id}', [AdminController::class, 'markAsDelivered'])->name('delivered');
+
 route::get('/contact',[HomeController::class,'contact']);
 
 

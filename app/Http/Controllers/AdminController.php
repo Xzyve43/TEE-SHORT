@@ -293,7 +293,6 @@ class AdminController extends Controller
 
     public function searchdata(Request $request)
 
-
     {
 
         $searchText=$request->search;
@@ -305,6 +304,45 @@ class AdminController extends Controller
 
 
     }
+
+    public function markAsPacked($id)
+    {
+        $order = Order::find($id);
+        
+        if ($order) {
+            $order->delivery_status = 'packed';
+            $order->save();
+        }
+    
+        return redirect()->back();
+    }
+    
+    public function markAsShipped($id)
+    {
+        $order = Order::find($id);
+    
+        if ($order && $order->delivery_status === 'packed') {
+            $order->delivery_status = 'shipped';
+            $order->save();
+        }
+    
+        return redirect()->back();
+    }
+    
+    public function markAsDelivered($id)
+    {
+        $order = Order::find($id);
+    
+        if ($order && $order->delivery_status === 'shipped') {
+            $order->delivery_status = 'delivered';
+            $order->save();
+        }
+    
+        return redirect()->back();
+    }
+    
+    
+
 
     
 }

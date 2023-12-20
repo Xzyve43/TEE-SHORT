@@ -94,6 +94,7 @@
                     <th style="padding: 10px;">Order Date</th>
                     <th style="padding: 10px;">Payment Status</th>
                     <th style="padding: 10px;">Delivery Status</th>
+                    <th style="padding: 10px;">Actions</th>
                     <th style="padding: 10px;">Delivered</th>
                     <th style="padding: 10px;">Print PDF</th>
                     <th style="padding: 10px;"> Send Email</th>
@@ -114,29 +115,32 @@
                         <td>{{$order->delivery_status}}</td>
 
                         <td>
-
-                        @if($order->delivery_status=='processing')
-                            <a href="{{url('delivered',$order->id)}}" onclick="return confirm('Are you sure this product is delivered?')"class="btn btn-primary">Delivered</a>
-
+                            @if($order->delivery_status != 'delivered')
+                                <a href="{{ route('packed', $order->id) }}" class="btn btn-warning">Packed</a>
+                                <a href="{{ route('shipped', $order->id) }}" class="btn btn-success">Shipped</a>
                             @else
+                                <p style="color: green;">Order Delivered</p>
+                            @endif
+                        </td>
 
-
-
-                            <p style="color: green;">Delivered</p>
-
-
-
+                        <!-- Actions for 'Delivered' -->
+                        <td>
+                            @if($order->delivery_status == 'shipped')
+                                <a href="{{ route('delivered', $order->id) }}" onclick="return confirm('Are you sure this product is delivered?')" class="btn btn-primary">Delivered</a>
+                            @elseif($order->delivery_status == 'delivered')
+                                <p style="color: green;">Delivered</p>
+                            @else
+                                <!-- Show an empty space if neither 'shipped' nor 'delivered' -->
+                                &nbsp;
                             @endif
                         </td>
 
                         <td>
-
                         <a href="{{url('print_pdf',$order->id)}}" class="btn btn-secondary">Print PDF</a>
                         </td>
 
 
                         <td>
-
                         <a href="{{url('send_email',$order->id)}}" class="btn btn-info">Send Email</a>
 
                         </td>
@@ -159,6 +163,8 @@
              </div>
     </div>
 
+
+    
         
     <!-- container-scroller -->
     <!-- plugins:js -->
