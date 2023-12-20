@@ -135,7 +135,7 @@
 
             <h1 style="font-size: 25px; padding-bottom: 15px;">Proceed to Order</h1>
 
-            <a href="{{url('cash_order')}}" class="btn btn-dark">Cash On Delivery</a>
+            <a href="{{ route('cash_order') }}" class="btn btn-dark" id="confirmOrder">Cash On Delivery</a>
 
             <a href="{{url('stripe',$totalprice)}}" class="btn btn-primary">Pay Using Card</a>
 
@@ -156,6 +156,20 @@
          
          </p>
       </div>
+
+        <script>
+            document.getElementById("confirmOrder").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent the default action (redirecting)
+
+                // Show a confirmation dialog
+                if (confirm("Are you sure you want to place this order?")) {
+                    // If the user confirms, proceed with the order placement
+                    window.location.href = event.target.href;
+                } else {
+                    // If the user cancels, do nothing or perform any other action
+                }
+            });
+        </script>
 
       <script>
       function confirmation(ev) {

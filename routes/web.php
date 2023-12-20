@@ -75,6 +75,8 @@ Route::get('shipped/{id}', [AdminController::class, 'markAsShipped'])->name('shi
 
 Route::get('delivered/{id}', [AdminController::class, 'markAsDelivered'])->name('delivered');
 
+Route::get('/cash-order', [HomeController::class, 'cash_order'])->name('cash_order');
+
 route::get('/contact',[HomeController::class,'contact']);
 
 

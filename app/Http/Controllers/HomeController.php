@@ -174,6 +174,10 @@ class HomeController extends Controller
         $user = Auth::user();
         $userid = $user->id;
         $cartItems = cart::where('user_id', '=', $userid)->get();
+
+            if ($cartItems->isEmpty()) {
+        return redirect()->back()->with('message', 'Your cart is empty. Please add items to proceed.');
+    }
     
         foreach ($cartItems as $item)
         {
